@@ -10,15 +10,20 @@ window.addEventListener("resize", function(){
 })
 
 const mouse = {
-    x : null,
-    y: null
+    x : 100,
+    y: 100
 }
 
 canvas.addEventListener("click", function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    drawCircle();
 });
+
+canvas.addEventListener("mousemove", function(event){
+    mouse.x = event.x;
+    mouse.y = event.y;
+    drawCircle();
+})
 
 function drawCircle(){
     context.fillStyle = "blue";
