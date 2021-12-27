@@ -7,9 +7,9 @@ canvas.height = window.innerHeight;
 window.addEventListener("resize", function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    context.fillStyle = "white";
-    context.fillRect(10, 20, 150, 50);
 })
 
-context.fillStyle = "white";
-context.fillRect(10, 20, 150, 50);
+context.fillStyle = "blue";
+context.beginPath ();
+context.arc(100,100, 50, 0, Math.PI * 2);
+context.fill();
