@@ -3,6 +3,7 @@ const context = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
 const mouse = {
     x : undefined,
     y: undefined
@@ -24,7 +25,7 @@ canvas.addEventListener("click", function(event){
 canvas.addEventListener("mousemove", function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    init();
+    createParticles();
 })
 
 class Particle{
@@ -52,13 +53,11 @@ class Particle{
     }
 }
 
-function init(){
+function createParticles(){
     for(let i = 0; i < 5; i++){
          particles.push(new Particle())
     }
 }
-
-init();
 
 function handleParticles(){
     for(let i = 0; i < particles.length; i++){
