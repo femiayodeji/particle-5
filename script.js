@@ -66,6 +66,23 @@ function handleParticles(){
         particle.draw();
         particle.update();
 
+        for(let j = i; j < particles.length; j++){
+            const nextParticle = particles[j];
+            const dx = particle.x - nextParticle.x;
+            const dy = particle.y - nextParticle.y;
+            const distance = Math.sqrt(dx * dx + dy*dy);
+
+            if(distance < 100){
+                context.beginPath();
+                context.strokeStyle = particle.color;
+                context.lineWidth = 0.2;
+                context.moveTo(particle.x, particle.y);
+                context.lineTo(nextParticle.x, nextParticle.y);
+                context.stroke();
+                context.closePath();
+            }
+        }
+
         if(particle.size <= 0.3){
             particles.splice(i, 1);
             i--;
