@@ -3,18 +3,18 @@ const context = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-window.addEventListener("resize", function(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-})
-
 const mouse = {
     x : undefined,
     y: undefined
 }
 
 const particles = [];
+let hue = 0;
+
+window.addEventListener("resize", function(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+})
 
 canvas.addEventListener("click", function(event){
     mouse.x = event.x;
@@ -34,6 +34,7 @@ class Particle{
         this.size = Math.random() * 15 + 1;
         this.speedx = Math.random() * 3 - 1.5;
         this.speedy = Math.random() * 3 - 1.5;
+        this.color = `hsl(${hue}, 100%, 50%)`;
     }
 
     update(){
@@ -44,7 +45,7 @@ class Particle{
     }
 
     draw(){
-        context.fillStyle = "blue";
+        context.fillStyle = this.color;
         context.beginPath ();
         context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         context.fill();        
@@ -52,7 +53,7 @@ class Particle{
 }
 
 function init(){
-    for(let i = 0; i < 50; i++){
+    for(let i = 0; i < 5; i++){
          particles.push(new Particle())
     }
 }
@@ -72,10 +73,10 @@ function handleParticles(){
    }
 }
 
-
 function animate(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     handleParticles();
+    hue+=0.5;
     requestAnimationFrame(animate);
 }
 
