@@ -76,7 +76,7 @@ function handleParticles(){
 function animate(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     handleParticles();
-    hue+=0.5;
+    hue+=2;
     requestAnimationFrame(animate);
 }
 
