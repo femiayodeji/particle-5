@@ -24,12 +24,13 @@ canvas.addEventListener("click", function(event){
 canvas.addEventListener("mousemove", function(event){
     mouse.x = event.x;
     mouse.y = event.y;
+    init();
 })
 
 class Particle{
     constructor(){
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = mouse.x;
+        this.y = mouse.y;
         this.size = Math.random() * 15 + 1;
         this.speedx = Math.random() * 3 - 1.5;
         this.speedy = Math.random() * 3 - 1.5;
@@ -51,7 +52,7 @@ class Particle{
 }
 
 function init(){
-    for(let i = 0; i < 100; i++){
+    for(let i = 0; i < 50; i++){
          particles.push(new Particle())
     }
 }
@@ -59,10 +60,15 @@ function init(){
 init();
 
 function handleParticles(){
-    for(let i = 0; i < 100; i++){
+    for(let i = 0; i < particles.length; i++){
         let particle = particles[i];
         particle.draw();
         particle.update();
+
+        if(particle.size <= 0.3){
+            particles.splice(i, 1);
+            i--;
+        }
    }
 }
 
